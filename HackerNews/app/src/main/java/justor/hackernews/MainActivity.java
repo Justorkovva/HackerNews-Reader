@@ -13,9 +13,7 @@ import com.oc.hnapp.android.HNQueryTask;
 public class MainActivity extends AppCompatActivity {
 
     private HNQueryTask _task = null;
-
     private int _page = 0;
-
     private HNArticlesAdapter _adapter;
 
     @Override
@@ -28,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         _adapter = new HNArticlesAdapter(this,context);
-
         recyclerView.setAdapter(_adapter);
-
         loadNext();
 
         final ProgressBar progress = (ProgressBar) findViewById(R.id.progress);
@@ -40,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
             }
         });
-
     }
 
     public void loadNext() {

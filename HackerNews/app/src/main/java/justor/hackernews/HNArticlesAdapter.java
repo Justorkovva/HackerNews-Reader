@@ -82,12 +82,11 @@ public class HNArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         private final TextView _title;
         public String url;
         public String send_title;
-       // HNArticle hn = articles.get(position);
 
         public HNArticleViewHolder(final View itemView) {
             super(itemView);
 
-            _title = ((TextView) itemView.findViewById(R.id.title));
+            _title = itemView.findViewById(R.id.title);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
