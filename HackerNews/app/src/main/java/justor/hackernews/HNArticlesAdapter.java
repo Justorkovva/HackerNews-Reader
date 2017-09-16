@@ -22,6 +22,7 @@ public class HNArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         _mainActivity = mainActivity;
         this._context=context;
     }
+    public HNArticlesAdapter(){}
 
     private static final int VIEW_TYPE_ARTICLE = 0;
     private static final int VIEW_TYPE_PROGRESS = 1;
