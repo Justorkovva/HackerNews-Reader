@@ -14,10 +14,13 @@ import java.util.List;
 
 public class HNArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements HNQueryCallback {
 
-    private final MainActivity _mainActivity;
+    private static Context _context;
+    private MainActivity _mainActivity;
 
-    public HNArticlesAdapter(MainActivity mainActivity) {
+
+    public HNArticlesAdapter(MainActivity mainActivity,Context context) {
         _mainActivity = mainActivity;
+        this._context=context;
     }
 
     private static final int VIEW_TYPE_ARTICLE = 0;
@@ -65,6 +68,7 @@ public class HNArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         if (holder instanceof HNArticleViewHolder)
             ((HNArticleViewHolder) holder).bind(_articles.get(position));
         else if (holder instanceof ProgressViewHolder) {
@@ -75,17 +79,32 @@ public class HNArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public static class HNArticleViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView _title;
+        public String url;
+        public String send_title;
+       // HNArticle hn = articles.get(position);
 
-        public HNArticleViewHolder(View view) {
-            super(view);
-            _title = (TextView) view.findViewById(R.id.title);
+        public HNArticleViewHolder(final View itemView) {
+            super(itemView);
+
+            _title = ((TextView) itemView.findViewById(R.id.title));
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent myIntent = new Intent(_context, Article.class);
+                   // myIntent.putExtra("url", url);
+                    //myIntent.putExtra("title", send_title);
+                    _context.startActivity(myIntent);
+                }
+            });
         }
 
         public void bind(HNArticle article) {
             _title.setText(article.title);
+            url=article.url;
+            send_title=article.title;
         }
     }
-
     public static class ProgressViewHolder extends RecyclerView.ViewHolder {
         public ProgressViewHolder(View itemView) { super(itemView); }
     }

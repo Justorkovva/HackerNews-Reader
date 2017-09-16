@@ -1,5 +1,6 @@
 package justor.hackernews;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,11 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Context context=MainActivity.this;
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        _adapter = new HNArticlesAdapter(this);
+        _adapter = new HNArticlesAdapter(this,context);
+
         recyclerView.setAdapter(_adapter);
 
         loadNext();
