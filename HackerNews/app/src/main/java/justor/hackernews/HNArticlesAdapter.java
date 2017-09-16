@@ -92,8 +92,8 @@ public class HNArticlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 @Override
                 public void onClick(View view) {
                     Intent myIntent = new Intent(_context, Article.class);
-                   // myIntent.putExtra("url", url);
-                    //myIntent.putExtra("title", send_title);
+                    myIntent.putExtra("url", url);
+                    myIntent.putExtra("title", send_title);
                     _context.startActivity(myIntent);
                 }
             });
